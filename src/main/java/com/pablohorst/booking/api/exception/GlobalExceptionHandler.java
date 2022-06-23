@@ -89,7 +89,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     /**
-     * Switches the Exception to the proper handler.  The default ResponseEntityExceptionHandler is used first, then
+     * Switches the Exception to the proper handler. The default ResponseEntityExceptionHandler is used first, then
      * individual exception workflows can be defined below that. Finally, the "catch all" handler is defined.
      */
     @ExceptionHandler({Exception.class})
@@ -116,7 +116,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<ErrorDetails> body = new ArrayList<>();
 
-        ex.getBindingResult().getFieldErrors().stream().forEach(error ->
+        ex.getBindingResult().getFieldErrors().forEach(error ->
                 body.add(ErrorDetails.builder()
                         .field(error.getField())
                         .message(error.getDefaultMessage())
@@ -126,34 +126,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @Override
-    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders httpHeaders, HttpStatus httpStatus, WebRequest webRequest) {
-
-//        // Validation for enums when non a supplied value doesn't match options within an enum
-//        if (ex.getCause() instanceof InvalidFormatException) {
-//            List<JsonMappingException.Reference> path = ((InvalidFormatException) ex.getCause()).getPath();
-//            String field = null;
-//
-//            if (!path.isEmpty()) {
-//                //Loop through the Path and find first available field name
-//                int i = 1;
-//                while (field == null && i <= path.size()) {
-//                    field = path.get(path.size() - i).getFieldName();
-//                    i++;
-//                }
-//            }
-//
-//            String incorrectValue = ((InvalidFormatException) ex.getCause()).getValue().toString();
-//
-//            Status status = Status.builder()
-//                    .code(CommonStatusCode.INVALID_REQUEST)
-//                    .errors(Collections.singletonList(ErrorDetails.builder()
-//                            .field(field)
-//                            .message("incorrect enum value: " + incorrectValue)
-//                            .build()))
-//                    .build();
-//
-//            return new ResponseEntity<>(status, new HttpHeaders(), CommonStatusCode.INVALID_REQUEST.getHttpStatus());
-//        }
+    protected ResponseEntity<Object> handleHttpMessageNotReadable(
+            HttpMessageNotReadableException ex,
+            HttpHeaders httpHeaders,
+            HttpStatus httpStatus,
+            WebRequest webRequest) {
 
         // Validation for Malformed JSON request such as missing comma or curly braces
         if (ex.getCause() instanceof JsonParseException || ex.getCause() instanceof JsonMappingException) {
@@ -179,7 +156,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     /**
-     * Builds the BaseResponse containing the
+     * Builds the BaseResponse containing the Exception information
      *
      * @param ex
      * @param body    Null or a list of ErrorDetails objects populated in the Exception handler method for the specific exception
@@ -196,6 +173,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .code(mapCommonStatusCode(ex))
                 .build();
 
+        // Inject the Error Details list added on the overridden handlers to the status
         if (body instanceof List) {
             internalStatus.setErrors((List<ErrorDetails>) body);
         }

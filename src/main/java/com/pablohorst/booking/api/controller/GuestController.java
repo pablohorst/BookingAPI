@@ -2,7 +2,7 @@ package com.pablohorst.booking.api.controller;
 
 import com.pablohorst.booking.api.data.dto.GuestGetDto;
 import com.pablohorst.booking.api.data.dto.GuestPostDto;
-import com.pablohorst.booking.api.data.entity.Guest;
+import com.pablohorst.booking.api.data.model.Guest;
 import com.pablohorst.booking.api.data.message.response.BaseResponse;
 import com.pablohorst.booking.api.service.IGuestService;
 import org.modelmapper.ModelMapper;

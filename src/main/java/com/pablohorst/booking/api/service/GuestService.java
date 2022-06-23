@@ -1,6 +1,6 @@
 package com.pablohorst.booking.api.service;
 
-import com.pablohorst.booking.api.data.entity.Guest;
+import com.pablohorst.booking.api.data.model.Guest;
 import com.pablohorst.booking.api.exception.GuestCannotDeleteWithReservationException;
 import com.pablohorst.booking.api.exception.GuestDuplicatedPassportException;
 import com.pablohorst.booking.api.exception.GuestNotFoundException;

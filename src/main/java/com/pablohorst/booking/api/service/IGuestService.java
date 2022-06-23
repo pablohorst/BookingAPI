@@ -1,6 +1,6 @@
 package com.pablohorst.booking.api.service;
 
-import com.pablohorst.booking.api.data.entity.Guest;
+import com.pablohorst.booking.api.data.model.Guest;
 
 import java.util.List;
 
