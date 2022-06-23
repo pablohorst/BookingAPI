@@ -1,0 +1,77 @@
+# General information settings
+info:
+  app:
+    # Application version obtained from build.gradle file
+    version: "@version@"
+
+# Logging settings
+logging:
+  level:
+    com:
+      pablohorst: DEBUG
+    org:
+      hibernate:
+        SQL: DEBUG
+      springframework: INFO
+
+# Spring Actuator Settings
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+  endpoints:
+    # Security setting to disable default endpoints
+    enabled-by-default: false
+    web:
+      base-path: /status
+      exposure:
+        include: "*"
+  health:
+    defaults:
+      enabled: true
+    diskspace:
+      enabled: false
+  security:
+    enabled: false
+
+# Server settings
+server:
+  port: 8080
+  servlet:
+    context-path: /v0/booking
+
+# General Springboot Settings
+spring:
+  # Database Settings
+  datasource:
+    url: jdbc:h2:mem:booking;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    platform: h2
+    username: root
+    password: root
+    driverClassName: org.h2.Driver
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+      hibernate:
+        ddl-auto: update
+      properties:
+        show_sql: true
+        use_sql_comments: false
+        hibernate.format_sql: false
+    h2:
+      console:
+        enabled: true
+        path: /console
+        settings:
+          trace: false
+          web-allow-others: false
+  jackson:
+    deserialization:
+      # Fail request if an unknown field is found
+      fail-on-unknown-properties: true
+  # Misc Settings
+  output:
+    ansi:
+      enabled: ALWAYS
+    application:
+      name: booking-api
