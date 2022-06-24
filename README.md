@@ -38,7 +38,7 @@ For the sake of use case, the following considerations were taken into account:
 - Model Mapper
 
 ## Features Included
-- REST API with fully functional operations, validations and requirements (see Booking Operations below)
+- REST API with fully functional operations, validations and requirements (see [Booking API Specification](#Booking API Specification) below)
 - Response Object design with custom status and body
 - Status code design to centralize API Status code management
 - Status codes specific per scenario approach
@@ -61,6 +61,9 @@ After confirming the deployment was successful, balance the traffic towards the 
 ## Extra Documentation
 - [ER Database Diagram](https://github.com/pablohorst/booking-api/blob/main/Booking%20API%20ER%20Diagram.pdf)
 - [Postman Collection to run examples](https://github.com/pablohorst/booking-api/blob/main/Booking%20API.postman_collection.json)
+- [Swagger Spec HTML](https://github.com/pablohorst/booking-api/blob/main/swagger-html/index.html)
+
+## Instructions
 
 ## Booking API Specification
 
