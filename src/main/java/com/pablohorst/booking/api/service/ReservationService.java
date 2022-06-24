@@ -1,6 +1,6 @@
 package com.pablohorst.booking.api.service;
 
-import com.pablohorst.booking.api.data.entity.Reservation;
+import com.pablohorst.booking.api.data.model.Reservation;
 import com.pablohorst.booking.api.exception.*;
 import com.pablohorst.booking.api.repository.GuestRepository;
 import com.pablohorst.booking.api.repository.ReservationRepository;

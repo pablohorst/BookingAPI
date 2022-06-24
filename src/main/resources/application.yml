@@ -11,7 +11,7 @@ logging:
       pablohorst: DEBUG
     org:
       hibernate:
-        SQL: DEBUG
+        SQL: INFO
       springframework: INFO
 
 # Spring Actuator Settings

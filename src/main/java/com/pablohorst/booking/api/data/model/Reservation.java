@@ -1,4 +1,4 @@
-package com.pablohorst.booking.api.data.entity;
+package com.pablohorst.booking.api.data.model;
 
 import lombok.*;
 

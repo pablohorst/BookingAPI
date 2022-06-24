@@ -1,6 +1,6 @@
 package com.pablohorst.booking.api.repository;
 
-import com.pablohorst.booking.api.data.entity.Reservation;
+import com.pablohorst.booking.api.data.model.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

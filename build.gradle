@@ -43,10 +43,9 @@ dependencies {
     // Spring Boot Dependencies
 
     // Logging
-//    implementation 'org.owasp:security-logging-logback:1.1.7'
-//    implementation('org.owasp.esapi:esapi:2.4.0.0') {
-//        exclude group: 'log4j', module: 'log4j'
-//    }
+    //// It's used it ControllerRequestResponseLoggingInterceptor to perform
+    //// byte-to-string conversion
+    implementation 'commons-io:commons-io:2.6'
     // Logging
 
     // Project Lombok
