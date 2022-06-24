@@ -65,6 +65,13 @@ After confirming the deployment was successful, balance the traffic towards the 
 
 ## Instructions
 
+### Run application and create a reservation 
+1. Run Gradle bootRun command (requires port 8080)
+2. To create a reservation, first add a guest and use its Id to create the reservation
+
+### Run test suite
+1. Run Gradle test command
+
 ## Booking API Specification
 
 ### End-Points
