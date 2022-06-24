@@ -43,8 +43,7 @@ dependencies {
     // Spring Boot Dependencies
 
     // Logging
-    //// It's used it ControllerRequestResponseLoggingInterceptor to perform
-    //// byte-to-string conversion
+    //// It's used to perform byte-to-string conversion on logging
     implementation 'commons-io:commons-io:2.6'
     // Logging
 
