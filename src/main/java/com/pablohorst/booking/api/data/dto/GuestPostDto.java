@@ -1,5 +1,7 @@
 package com.pablohorst.booking.api.data.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +14,8 @@ import java.io.Serializable;
  * @author Pablo Horst
  */
 @Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class GuestPostDto implements Serializable {
     @NotNull
