@@ -1,0 +1,561 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/pablohorst/BookingAPI/0.0.1
+info:
+  description: Booking REST API for a hotel scenario.
+  version: "0.0.1"
+  title: Booking API
+  contact:
+    email: pablohorst@gmail.com
+tags:
+  - name: Guests
+    description: Guests Operations
+  - name: Reservations
+    description: Reservations Operations
+  - name: Status
+    description: Status Operations
+paths:
+  /booking/guest:
+    post:
+      tags:
+        - Guests
+      summary: Create a Guest
+      operationId: createGuest
+      description: Adds a Guest to the system
+      responses:
+        '201':
+          description: Guest created
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Status'
+              examples:
+                "Success":
+                  $ref: "#/components/examples/StatusSuccess"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Status'
+              examples:
+                "GuestDuplicated":
+                  value:
+                    status:
+                      code: "GuestDuplicated"
+                      timestamp: "2022-06-24T19:51:03Z"
+                      description: "There's another guest with the provided passport number"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GuestDTO'
+        description: Guest to add
+  /booking/guests:
+    get:
+      tags:
+        - Guests
+      summary: Gets all Guests
+      operationId: getGuests
+      description: |
+        Get all the guests in the system
+      responses:
+        '200':
+          description: search results
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Status'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Guest'
+              examples:
+                "Success":
+                  $ref: "#/components/examples/SuccessGuestList"
+    put:
+      tags:
+        - Guests
+      summary: Update a Guest
+      operationId: updateGuest
+      description: Updates a Guest in the system
+      responses:
+        '201':
+          description: Guest created
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Status'
+              examples:
+                "Success":
+                  $ref: "#/components/examples/StatusSuccess"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GuestDTO'
+        description: Guest to update
+  /booking/guests/{id}:
+    get:
+      tags:
+        - Guests
+      summary: Gets Guest by Id
+      operationId: getGuestsById
+      description: |
+        Get Guest by Id in the system
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID of the Guest to get
+      responses:
+        '200':
+          description: search results
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Status'
+                  - $ref: '#/components/schemas/Guest'
+              examples:
+                "Success":
+                  $ref: "#/components/examples/SuccessGuestGet"
+    delete:
+      tags:
+        - Guests
+      summary: Deletes Guest by Id
+      operationId: deleteGuestsById
+      description: |
+        Delete Guest by Id in the system
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID of the Guest to delete
+      responses:
+        '200':
+          description: search results
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Status'
+              examples:
+                "Success":
+                  $ref: "#/components/examples/StatusSuccess"
+  /booking/reservation:
+    post:
+      tags:
+        - Reservations
+      summary: Create a Reservation
+      operationId: createReservation
+      description: Adds a Reservation to the system
+      responses:
+        '201':
+          description: Reservation created
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Status'
+              examples:
+                "Success":
+                  $ref: "#/components/examples/StatusSuccess"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Status'
+              # examples:
+              #   "GuestDuplicated":
+              #     value:
+              #       status:
+              #         code: "GuestDuplicated"
+              #         timestamp: "2022-06-24T19:51:03Z"
+              #         description: "There's another guest with the provided passport number"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationDTO'
+        description: Reservation to add
+  /booking/reservations:
+    get:
+      tags:
+        - Reservations
+      summary: Gets all Reservations
+      operationId: getReservations
+      description: |
+        Get all the reservations in the system
+      responses:
+        '200':
+          description: search results
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Status'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Reservation'
+              examples:
+                "Success":
+                  $ref: "#/components/examples/SuccessReservationList"
+    put:
+      tags:
+        - Reservations
+      summary: Update a Reservation
+      operationId: updateReservation
+      description: Updates a Reservation in the system
+      responses:
+        '201':
+          description: Reservation created
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Status'
+              examples:
+                "Success":
+                  $ref: "#/components/examples/StatusSuccess"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationDTO'
+        description: Reservation to update
+  /booking/reservations/{id}:
+    get:
+      tags:
+        - Reservations
+      summary: Gets Reservation by Id
+      operationId: getReservationsById
+      description: |
+        Get Reservation by Id in the system
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID of the Reservation to get
+      responses:
+        '200':
+          description: search results
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Status'
+                  - $ref: '#/components/schemas/Reservation'
+              examples:
+                "Success":
+                  $ref: "#/components/examples/SuccessReservationGet"
+    delete:
+      tags:
+        - Reservations
+      summary: Deletes Reservation by Id
+      operationId: deleteReservationsById
+      description: |
+        Delete Reservation by Id in the system
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID of the Reservation to delete
+      responses:
+        '200':
+          description: search results
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Status'
+              examples:
+                "Success":
+                  $ref: "#/components/examples/StatusSuccess"
+  /booking/status/health:
+    get:
+      tags:
+        - Status
+      summary: Gets Application Status
+      operationId: getStatusHealth
+      description: |
+        GetGets Application Status
+      responses:
+        '200':
+          description: search results
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/StatusHealth'
+              examples:
+                "Success":
+                  $ref: "#/components/examples/StatusHealth"
+components:
+  examples:
+    StatusHealth:
+      value:
+        status: "UP"
+        components: {
+          db: {
+            status: "UP",
+            details: {
+              database: "H2",
+              validationQuery: "isValid()"
+            }
+          },
+          ping: {
+            status: "UP"
+          }
+        }
+    SuccessReservationGet:
+      value:
+        status:
+          code: "Success"
+          timestamp: "2022-06-24T19:51:03Z"
+          description: "Successful Operation"
+        body: {
+          id": 1,
+          bookingDate: "2022-06-24T02:34:10.435",
+          checkInDate: "2022-07-21",
+          checkOutDate: "2022-07-21",
+          guest: {
+            id: 1,
+            firstName: "John",
+            lastName: "Doe",
+            passport: "AA12345",
+            nationality: "USA",
+            profession: "Engineer"
+          }
+        }
+    SuccessReservationList:
+      value:
+        status:
+          code: "Success"
+          timestamp: "2022-06-24T19:51:03Z"
+          description: "Successful Operation"
+        body: [
+          {
+            id: 1,
+            bookingDate: "2022-06-24T02:34:10.435",
+            checkInDate: "2022-07-21",
+            checkOutDate: "2022-07-21",
+            guest: {
+              id: 1,
+              firstName: "John",
+              lastName: "Doe",
+              passport: "AA12345",
+              nationality: "USA",
+              profession: "Engineer"
+            }
+          }]
+    SuccessGuestGet:
+      value:
+        status:
+          code: "Success"
+          timestamp: "2022-06-24T19:51:03Z"
+          description: "Successful Operation"
+        body: {
+          id: 1,
+          firstName: John,
+          lastName: Doe,
+          passport: "12345",
+          nationality: USA,
+          profession: Engineer
+        }
+    SuccessGuestList:
+      value:
+        status:
+          code: "Success"
+          timestamp: "2022-06-24T19:51:03Z"
+          description: "Successful Operation"
+        body: [
+          {
+            id: 1,
+            firstName: John,
+            lastName: Doe,
+            passport: "12345",
+            nationality: USA,
+            profession: Engineer
+          }]
+    StatusSuccess:
+      value:
+        status:
+          code: "Success"
+          timestamp: "2022-06-24T19:51:03Z"
+          description: "Successful Operation"
+  schemas:
+    ErrorDetails:
+      type: object
+      description: >-
+        Provides a list of errors
+      properties:
+        field:
+          type: string
+          description: "The error field"
+          example: "guestId"
+        message:
+          type: string
+          description: "Explanatory statement for the error"
+          example: "must be greater than or equal to 1"
+    Guest:
+      type: object
+      required:
+        - id
+        - firstName
+        - lastName
+        - passport
+        - nationality
+        - profession
+      properties:
+        id:
+          type: number
+          example: 1
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        passport:
+          type: string
+          example: 12345
+        nationality:
+          type: string
+          example: USA
+        profession:
+          type: string
+          example: Enginner
+    GuestDTO:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        passport:
+          type: string
+          example: 12345
+        nationality:
+          type: string
+          example: USA
+        profession:
+          type: string
+          example: Enginner
+    Reservation:
+      properties:
+        id:
+          type: number
+          example: 1
+        bookingDate:
+          type: string
+          format: date-time
+          example: "2022-06-24T02:34:10.435"
+        checkInDate:
+          type: string
+          format: date
+          example: "2022-07-21"
+        checkOutDate:
+          type: string
+          format: date
+          example: "2022-07-21"
+        guest:
+          $ref: '#/components/schemas/Guest'
+      type: object
+    ReservationDTO:
+      type: object
+      properties:
+        checkInDate:
+          type: string
+          format: date
+          example: "2022-07-21"
+        checkOutDate:
+          type: string
+          format: date
+          example: "2022-07-21"
+        guestId:
+          type: number
+          example: 1
+    Status:
+      type: object
+      description: |-
+        Main representation of the operation status.
+      required:
+        - status
+      properties:
+        status:
+          type: object
+          required:
+            - code
+            - description
+            - timestamp
+            - details
+          properties:
+            code:
+              type: string
+              description: "Status Code of the operation"
+              example: "InvalidRequest"
+            description:
+              type: string
+              example: "Invalid Request"
+              description: >-
+                Explanatory statement for 'code'
+            timestamp:
+              type: string
+              example: "2022-06-24 15:00:00"
+            errors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ErrorDetails'
+    StatusHealth:
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Status of the application"
+          example: "UP"
+        components:
+          type: object
+          properties:
+            db:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: "Status of the application"
+                  example: "UP"
+                details:
+                  type: object
+                  properties:
+                    database:
+                      type: string
+                      description: "Type of database"
+                      example: "H2"
+                    validationQuery:
+                      type: string
+                      description: "Validation Query"
+                      example: "isValid()"
+            ping:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: "Status of the application"
+                  example: "UP"
