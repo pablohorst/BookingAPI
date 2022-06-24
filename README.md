@@ -38,7 +38,7 @@ For the sake of use case, the following considerations were taken into account:
 - Model Mapper
 
 ## Features Included
-- REST API with fully functional operations, validations and requirements (see [Booking API Specification](#Booking API Specification) below)
+- REST API with fully functional operations, validations and requirements, see [Booking API Specification](#Booking API Specification) below
 - Response Object design with custom status and body
 - Status code design to centralize API Status code management
 - Status codes specific per scenario approach
