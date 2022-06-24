@@ -68,27 +68,27 @@ After confirming the deployment was successful, balance the traffic towards the 
 
 #### Reservation Operations
 
-End-point                          | Http Method | Description
------------------------------------|-------------|-------------
-/v0/booking/guest/              | POST        | Create a guest
-/v0/booking/guests/             | GET         | Get all guests
-/v0/booking/guests/{id}         | GET         | Get a guest by Id
-/v0/booking/guests/{id}         | POST        | Update a specific guest
-/v0/booking/guests/{id}         | DELETE      | Delete a specific guest
+| End-point               | Http Method | Description             |
+|-------------------------|-------------|-------------------------|
+| /v0/booking/guest/      | POST        | Create a guest          |
+| /v0/booking/guests/     | GET         | Get all guests          |
+| /v0/booking/guests/{id} | GET         | Get a guest by Id       |
+| /v0/booking/guests/{id} | POST        | Update a specific guest |
+| /v0/booking/guests/{id} | DELETE      | Delete a specific guest |
 
 
 #### Reservation Operations
 
-End-point                          | Http Method | Description
------------------------------------|-------------|-------------
-/v0/booking/reservation/              | POST        | Create a reservation
-/v0/booking/reservations/             | GET         | Get all reservations
-/v0/booking/reservations/{id}         | GET         | Get a reservation by Id
-/v0/booking/reservations/{id}         | POST        | Update a specific reservation
-/v0/booking/reservations/{id}         | DELETE      | Delete a specific reservation
+| End-point                     | Http Method | Description                   |
+|-------------------------------|-------------|-------------------------------|
+| /v0/booking/reservation/      | POST        | Create a reservation          |
+| /v0/booking/reservations/     | GET         | Get all reservations          |
+| /v0/booking/reservations/{id} | GET         | Get a reservation by Id       |
+| /v0/booking/reservations/{id} | POST        | Update a specific reservation |
+| /v0/booking/reservations/{id} | DELETE      | Delete a specific reservation |
 
 #### Health Operations
 
-End-point                          | Http Method | Description
------------------------------------|-------------|-------------
-/v0/booking/status/health          | GET         | Get Application Health
+| End-point                 | Http Method | Description            |
+|---------------------------|-------------|------------------------|
+| /v0/booking/status/health | GET         | Get Application Health |
