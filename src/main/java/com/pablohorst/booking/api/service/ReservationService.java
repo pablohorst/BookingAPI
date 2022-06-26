@@ -5,6 +5,7 @@ import com.pablohorst.booking.api.exception.*;
 import com.pablohorst.booking.api.repository.GuestRepository;
 import com.pablohorst.booking.api.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -87,6 +88,7 @@ public class ReservationService implements IReservationService {
         }
     }
 
+    @Transactional
     public Reservation createReservation(Reservation reservation) {
         // Set Booking Date
         reservation.setBookingDate(LocalDateTime.now());
@@ -106,6 +108,7 @@ public class ReservationService implements IReservationService {
         return reservationRepository.findByIdAndActive(id, true).orElseThrow(ReservationNotFoundException::new);
     }
 
+    @Transactional
     public Reservation updateReservation(long newReservationId, Reservation newReservation) {
         return reservationRepository.findByIdAndActive(newReservationId, true)
                 // Note: this could be refactored to a single DB query instead of doing 2 queries. It depends on the
@@ -132,6 +135,7 @@ public class ReservationService implements IReservationService {
                 .orElseThrow(ReservationNotFoundException::new);
     }
 
+    @Transactional
     public Reservation deleteById(long id) {
         // Get the reservation from the database
         Reservation reservation = reservationRepository.findByIdAndActive(id, true)

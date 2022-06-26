@@ -7,6 +7,7 @@ import com.pablohorst.booking.api.exception.GuestNotFoundException;
 import com.pablohorst.booking.api.repository.GuestRepository;
 import com.pablohorst.booking.api.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -53,6 +54,7 @@ public class GuestService implements IGuestService {
         }
     }
 
+    @Transactional
     public Guest createGuest(Guest guest) {
         // Validate passport uniqueness before saving
         validatePassportUniqueness(guest);
@@ -68,6 +70,7 @@ public class GuestService implements IGuestService {
         return guestRepository.findByIdAndActive(id, true).orElseThrow(GuestNotFoundException::new);
     }
 
+    @Transactional
     public Guest updateGuest(long newGuestId, Guest newGuest) {
         return guestRepository.findByIdAndActive(newGuestId, true)
                 // Note: this could be refactored to a single DB query instead of doing 2 queries. It depends on the
@@ -92,6 +95,7 @@ public class GuestService implements IGuestService {
                 .orElseThrow(GuestNotFoundException::new);
     }
 
+    @Transactional
     public Guest deleteById(long id) {
         // Get the guest from the database
         Guest guest = guestRepository.findByIdAndActive(id, true).orElseThrow(GuestNotFoundException::new);
